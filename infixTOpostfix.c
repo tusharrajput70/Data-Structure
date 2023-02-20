@@ -112,6 +112,7 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[]){
 int main(){
 	char infix[SIZE], postfix[SIZE];      
 	printf("ASSUMPTION: The infix expression contains single letter variables and single digit constants only.\n");
+	printf("TUSHAR RAJPUT 2100320130183\n");
 	printf("\nEnter Infix expression : ");
 	gets(infix);
 	InfixToPostfix(infix,postfix);                 
