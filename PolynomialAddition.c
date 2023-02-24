@@ -84,10 +84,19 @@ void sum(struct node *start, struct node *start2){
 void print(struct node* start){
     struct node *temp=start;
     while(temp!=NULL){
-        if(temp->coefficient>0){
-            printf("+%dx^%d",temp->coefficient,temp->degree);
-        }else{
-            printf("%dx^%d",temp->coefficient,temp->degree); 
+        if(temp->degree>0){
+            if(temp->coefficient>0){
+                printf("+%dx^%d",temp->coefficient,temp->degree);
+            }else{
+                printf("%dx^%d",temp->coefficient,temp->degree); 
+            }
+        }
+        else{
+            if(temp->coefficient>0){
+                printf("+%d",temp->coefficient,temp->degree);
+            }else{
+                printf("%d",temp->coefficient,temp->degree); 
+            }
         }
         temp=temp->next;
     }
