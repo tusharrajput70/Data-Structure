@@ -23,9 +23,6 @@ void create(int coefficient,int degree){
     newnode->next=NULL;
     tail=newnode;
 }
-
-
-
 struct node *start2;
 struct node *tail2;
 void create2(int coefficient,int degree){
@@ -46,24 +43,41 @@ void create2(int coefficient,int degree){
 
 struct node *start3;
 struct node *tail3;
-
+void addToans(int degree,int coefficient){
+    struct node *temp=malloc(sizeof(struct node));
+    temp->degree=degree;
+    temp->coefficient=coefficient;
+    temp->next=NULL;
+    if(start3==NULL){
+        start3=tail3=temp;
+        return;
+    }
+    tail3->next=temp;
+    tail3=temp;
+}
 void sum(struct node *start, struct node *start2){
     for(struct node *i=start;i!=NULL;i=i->next){
-        struct node *temp=malloc(sizeof(struct node));
-        temp->coefficient=0;
+        int ctr=0;
          for(struct node *j=start2;j!=NULL;j=j->next){
             if(j->degree==i->degree){
-                temp->coefficient+=i->coefficient+j->coefficient;  
+                addToans(i->degree,i->coefficient+j->coefficient); 
+                ctr++;
             }
         }
-        temp->degree=i->degree;
-        if(start3==NULL){
-            tail3=start3=temp;
-        }else{
-            tail3->next=temp;
-            tail3=temp;
+        if(ctr==0){
+            addToans(i->degree,i->coefficient);
         }
-        temp->next=NULL;
+    }
+    for(struct node *i=start2;i!=NULL;i=i->next){
+        int ctr=0;
+        for(struct node *j=start;j!=NULL;j=j->next){
+            if(i->degree==j->degree){
+                ctr++;
+            }
+        }
+        if(ctr==0){
+            addToans(i->degree,i->coefficient);
+        }
     }
 }
 
@@ -73,13 +87,14 @@ void print(struct node* start){
         if(temp->coefficient>0){
             printf("+%dx^%d",temp->coefficient,temp->degree);
         }else{
-            printf("-%d x^%d",temp->coefficient,temp->degree); 
+            printf("%dx^%d",temp->coefficient,temp->degree); 
         }
         temp=temp->next;
     }
     printf("\n");
 }
 void main(){
+    printf("TUSHAR RAJPUT 2100320130183\n");
     int n=0;
     printf("Enter 1st polynomial\n");
     while(n!=2){
